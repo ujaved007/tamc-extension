@@ -9,6 +9,7 @@ module.exports = {
 		popup: path.resolve("src/popup/popup.jsx"),
 		options: path.resolve("src/options/options.jsx"),
 		contentScript: path.resolve("src/contentScript/contentScript.js"),
+		backgroundScript: path.resolve("src/backgroundScript/backgroundScript.js"),
 	},
 	module: {
 		rules: [
