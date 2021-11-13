@@ -8,15 +8,15 @@ import {
 	Icon,
 } from "../styles/HomePage.styles";
 
-import edit from "../utils/edit.svg";
-import del from "../utils/delete.svg";
+import edit from "../assets/edit.svg";
+import del from "../assets/delete.svg";
+import copy from "../assets/copy.svg";
 
 const HomePage = () => {
-	const dat = { name: "lol lool" };
 	const handleListClick = (data) => {
 		chrome.runtime.sendMessage(
 			{
-				msg: "popup clicked",
+				msg: "autofill daily log",
 				data: data,
 			},
 			(response) => {
@@ -26,10 +26,37 @@ const HomePage = () => {
 			}
 		);
 	};
+	const handleCopy = () => {
+		chrome.storage.local.getBytesInUse(null, (res) => {
+			if (res === 0) {
+				chrome.runtime.sendMessage(
+					{
+						msg: "copy form",
+					},
+					(response) => {
+						if (response) {
+							console.log(response);
+						}
+					}
+				);
+			} else
+				chrome.runtime.sendMessage(
+					{
+						msg: "paste form",
+					},
+					(response) => {
+						if (response) {
+							console.log(response);
+						}
+					}
+				);
+		});
+	};
 
 	return (
 		<Section>
 			<Header>
+				<Icon src={copy} alt="COPY" onClick={() => handleCopy()} />
 				<AddBtn>+</AddBtn>
 			</Header>
 			{data.map((item, index) => {

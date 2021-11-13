@@ -8,7 +8,9 @@ module.exports = {
 		vendor: ["styled-components"],
 		popup: path.resolve("src/popup/popup.jsx"),
 		options: path.resolve("src/options/options.jsx"),
-		contentScript: path.resolve("src/contentScript/contentScript.js"),
+		dailyLogFiller: path.resolve("src/contentScript/dailyLogFiller.js"),
+		copyForms: path.resolve("src/contentScript/copyForms.js"),
+		pasteForms: path.resolve("src/contentScript/pasteForms.js"),
 		backgroundScript: path.resolve("src/backgroundScript/backgroundScript.js"),
 	},
 	module: {
@@ -54,13 +56,13 @@ module.exports = {
 		filename: "[name].js",
 		path: path.resolve("dist"),
 	},
-	optimization: {
-		splitChunks: {
-			chunks(chunk) {
-				return chunk.name !== "contentScript" && chunk.name !== "background";
-			},
-		},
-	},
+	// optimization: {
+	// 	splitChunks: {
+	// 		chunks(chunk) {
+	// 			return chunk.name !== "contentScript" && chunk.name !== "background";
+	// 		},
+	// 	},
+	// },
 };
 
 function getHtmlPlugins(chunks) {
