@@ -33,7 +33,13 @@ export const ListItems = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: ${(props) => props.theme.colors.green};
+	background-color: ${(props) => {
+		if (props.color === "red") {
+			return props.theme.colors.red;
+		} else if (props.color === "orange") {
+			return props.theme.colors.orange;
+		} else return props.theme.colors.green;
+	}};
 	border-radius: 10px;
 	margin: 0px 10px 10px 10px;
 	padding: 20px 10px 20px 10px;

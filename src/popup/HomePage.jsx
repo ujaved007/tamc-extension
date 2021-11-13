@@ -20,7 +20,6 @@ const HomePage = () => {
 				data: data,
 			},
 			(response) => {
-				// If this message's recipient sends a response it will be handled here
 				if (response) {
 					console.log(response);
 				}
@@ -33,10 +32,14 @@ const HomePage = () => {
 			<Header>
 				<AddBtn>+</AddBtn>
 			</Header>
-			{data.map((item) => {
+			{data.map((item, index) => {
 				return (
-					<ListItems>
-						<div onClick={() => handleListClick(item)}> {item.name}</div>
+					<ListItems
+						key={index}
+						color={item.color}
+						onClick={() => handleListClick(item)}
+					>
+						<div> {item.name}</div>
 						<div>
 							<Icon src={edit} alt="edit" />
 							<Icon src={del} alt="delete" />

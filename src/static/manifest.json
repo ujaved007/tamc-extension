@@ -10,10 +10,10 @@
 	},
 	"action": {
 		"default_popup": "popup.html",
-		"default_title": "React Extension",
+		"default_title": "TAMC Extension",
 		"default_icon": "icon.png"
 	},
-	"permissions": ["storage", "activeTab"],
+	"permissions": ["storage", "activeTab", "tabs", "scripting"],
 	"options_page": "options.html",
 	"background": {
 		"service_worker": "backgroundScript.js"
