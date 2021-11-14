@@ -3,7 +3,7 @@ import data from "../utils/data";
 import {
 	Section,
 	Header,
-	AddBtn,
+	HeaderBtn,
 	ListItems,
 	Icon,
 } from "../styles/HomePage.styles";
@@ -13,6 +13,8 @@ import del from "../assets/delete.svg";
 import copy from "../assets/copy.svg";
 
 const HomePage = () => {
+	const storage = chrome.storage.local;
+
 	const handleListClick = (data) => {
 		chrome.runtime.sendMessage(
 			{
@@ -52,12 +54,11 @@ const HomePage = () => {
 				);
 		});
 	};
-
 	return (
 		<Section>
 			<Header>
 				<Icon src={copy} alt="COPY" onClick={() => handleCopy()} />
-				<AddBtn>+</AddBtn>
+				<HeaderBtn>+</HeaderBtn>
 			</Header>
 			{data.map((item, index) => {
 				return (

@@ -15,7 +15,7 @@ export const Header = styled.div`
 	justify-content: space-between;
 `;
 
-export const AddBtn = styled.button`
+export const HeaderBtn = styled.button`
 	padding: 10px 20px 10px 20px;
 	background: none;
 	border-style: none;
