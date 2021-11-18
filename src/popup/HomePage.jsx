@@ -7,14 +7,15 @@ import {
 	ListItems,
 	Icon,
 } from "../styles/HomePage.styles";
+import { goTo } from "react-chrome-extension-router";
 
 import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
 import copy from "../assets/copy.svg";
+import EditPage from "./EditPage";
+import AddPage from "./AddPage";
 
 const HomePage = () => {
-	const storage = chrome.storage.local;
-
 	const handleListClick = (data) => {
 		chrome.runtime.sendMessage(
 			{
@@ -57,8 +58,8 @@ const HomePage = () => {
 	return (
 		<Section>
 			<Header>
-				<Icon src={copy} alt="COPY" onClick={() => handleCopy()} />
-				<HeaderBtn>+</HeaderBtn>
+				<Icon src={copy} alt="COPY" onClick={handleCopy} />
+				<HeaderBtn onClick={() => goTo(AddPage)}>+</HeaderBtn>
 			</Header>
 			{data.map((item, index) => {
 				return (
@@ -69,7 +70,7 @@ const HomePage = () => {
 					>
 						<div> {item.name}</div>
 						<div>
-							<Icon src={edit} alt="edit" />
+							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage)} />
 							<Icon src={del} alt="delete" />
 						</div>
 					</ListItems>

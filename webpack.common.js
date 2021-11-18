@@ -56,13 +56,13 @@ module.exports = {
 		filename: "[name].js",
 		path: path.resolve("dist"),
 	},
-	// optimization: {
-	// 	splitChunks: {
-	// 		chunks(chunk) {
-	// 			return chunk.name !== "contentScript" && chunk.name !== "background";
-	// 		},
-	// 	},
-	// },
+	optimization: {
+		splitChunks: {
+			chunks(chunk) {
+				return chunk.name !== "contentScript" && chunk.name !== "background";
+			},
+		},
+	},
 };
 
 function getHtmlPlugins(chunks) {

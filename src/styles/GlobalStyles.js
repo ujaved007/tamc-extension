@@ -10,6 +10,7 @@ body {
 	width: 400px;
     margin: 0 auto;
 	background-color: #023047;
+	color: #FEFAE0;
 	font-family: "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

@@ -1,9 +1,7 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.msg === "autofill daily log") {
 		const { closing, details, name, status, title } = request.data;
-
 		chrome.storage.local.set({ closing, details, name, status, title });
-
 		chrome.tabs.query({ active: true, currentWindow: true }, (res) => {
 			let tabId = res[0].id;
 			chrome.scripting.executeScript({
@@ -11,7 +9,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				files: ["dailyLogFiller.js"],
 			});
 		});
-	} else if (request.msg === "copy form") {
+		sendResponse("autofilled daily log");
+	}
+	if (request.msg === "copy form") {
 		chrome.tabs.query({ active: true, currentWindow: true }, (res) => {
 			let tabId = res[0].id;
 			chrome.scripting.executeScript({
@@ -19,7 +19,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				files: ["copyForms.js"],
 			});
 		});
-	} else if (request.msg === "paste form") {
+		sendResponse("copied form");
+	}
+	if (request.msg === "paste form") {
 		chrome.tabs.query({ active: true, currentWindow: true }, (res) => {
 			let tabId = res[0].id;
 			chrome.scripting.executeScript({
@@ -27,6 +29,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				files: ["pasteForms.js"],
 			});
 		});
+		sendResponse("pasted form");
 	}
-	sendResponse({ msg: "message from background" });
+	return true;
 });

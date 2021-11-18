@@ -1,7 +1,7 @@
 import React from "react";
 
 const EditPage = () => {
-	return <div></div>;
+	return <div>Edit PAge</div>;
 };
 
 export default EditPage;

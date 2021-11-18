@@ -3,13 +3,17 @@ import ReactDOM from "react-dom";
 import GlobalStyles from "../styles/GlobalStyles";
 import Theme from "../styles/theme";
 import { ThemeProvider } from "styled-components";
+import { Router } from "react-chrome-extension-router";
+
 import HomePage from "./HomePage";
+import EditPage from "./EditPage";
+import AddPage from "./AddPage";
 
 const App = () => {
 	return (
-		<React.Fragment>
+		<Router>
 			<HomePage />
-		</React.Fragment>
+		</Router>
 	);
 };
 
