@@ -4,7 +4,7 @@ chrome.storage.local.get(
 	["reqtime", "reqguard", "details", "sitename", "sitestate", "alarmtime", "alarmpoint"],
 	(res) => {
 		PatrolLog(res);
-		chrome.storage.local.clear();
+		chrome.storage.local.remove(["reqtime", "reqguard", "details", "sitename", "sitestate", "alarmtime", "alarmpoint"]);
 	}
 );
 

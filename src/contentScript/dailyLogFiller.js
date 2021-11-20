@@ -2,7 +2,7 @@ import { fillTextField, selectDropdown } from "../utils/selectorFuncs";
 
 chrome.storage.local.get(["title", "details", "closing", "status"], (res) => {
 	DailyLog(res);
-	chrome.storage.local.clear();
+	chrome.storage.local.remove(["title", "details", "closing", "status"]);
 });
 
 function DailyLog(data) {
