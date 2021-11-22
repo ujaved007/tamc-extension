@@ -2,6 +2,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
 	entry: {
@@ -21,6 +22,15 @@ module.exports = {
 					loader: "babel-loader",
 					options: {
 						presets: ["@babel/preset-env", "@babel/preset-react"],
+						plugins: [
+							[
+								"@babel/plugin-transform-runtime",
+								{
+									helpers: false,
+									regenerator: true,
+								},
+							],
+						],
 					},
 				},
 				exclude: "/node_modules",
@@ -51,6 +61,7 @@ module.exports = {
 			],
 		}),
 		...getHtmlPlugins(["popup", "options"]),
+		new Dotenv(),
 	],
 	output: {
 		filename: "[name].js",

@@ -1,12 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import data from "../utils/data";
-import {
-	Section,
-	Header,
-	HeaderBtn,
-	ListItems,
-	Icon,
-} from "../styles/HomePage.styles";
+import { Section, Header, HeaderBtn, ListItems, Icon } from "../styles/HomePage.styles";
 import { goTo } from "react-chrome-extension-router";
 
 import edit from "../assets/edit.svg";
@@ -14,6 +8,7 @@ import del from "../assets/delete.svg";
 import copy from "../assets/copy.svg";
 import EditPage from "./EditPage";
 import AddPage from "./AddPage";
+import LoginButton from "./Login";
 
 const HomePage = () => {
 	const handleListClick = (data) => {
@@ -63,11 +58,7 @@ const HomePage = () => {
 			</Header>
 			{data.map((item, index) => {
 				return (
-					<ListItems
-						key={index}
-						color={item.color}
-						onClick={() => handleListClick(item)}
-					>
+					<ListItems key={index} color={item.color} onClick={() => handleListClick(item)}>
 						<div> {item.name}</div>
 						<div>
 							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage)} />
