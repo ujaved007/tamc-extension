@@ -8,8 +8,7 @@ export const Section = styled.section`
 
 export const Header = styled.div`
 	display: flex;
-	margin-bottom: 10px;
-	margin-left: 10px;
+	margin: 15px 10px 15px 10px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
@@ -57,4 +56,10 @@ export const Icon = styled.img`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+
+export const AddBtnContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	margin: 5px 0px 15px 0px;
 `;

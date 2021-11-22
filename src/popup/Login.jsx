@@ -1,16 +1,17 @@
 import React from "react";
+import { PrimaryBtn } from "../styles/Button.styles";
 
 const LoginButton = () => {
 	return (
-		<button
+		<PrimaryBtn
 			onClick={() =>
 				chrome.tabs.create({
 					url: `${window.location.origin}/options.html`,
 				})
 			}
 		>
-			Log In
-		</button>
+			Options
+		</PrimaryBtn>
 	);
 };
 

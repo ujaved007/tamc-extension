@@ -1,60 +1,36 @@
-import React, { useEffect } from "react";
-import data from "../utils/data";
-import { Section, Header, HeaderBtn, ListItems, Icon } from "../styles/HomePage.styles";
+import React from "react";
 import { goTo } from "react-chrome-extension-router";
+import { auth0 } from "../utils/auth0";
+
+import data from "../utils/data";
+import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
+import { Section, Header, ListItems, Icon, AddBtnContainer } from "../styles/HomePage.styles";
+import { PrimaryBtn, PrimaryBtnSm, DangerBtnSm, TertiaryBtnSm } from "../styles/Button.styles";
 
 import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
-import copy from "../assets/copy.svg";
 import EditPage from "./EditPage";
 import AddPage from "./AddPage";
-import LoginButton from "./Login";
+import SignInPage from "./SignInPage";
 
-const HomePage = () => {
-	const handleListClick = (data) => {
-		chrome.runtime.sendMessage(
-			{
-				msg: "autofill daily log",
-				data: data,
-			},
-			(response) => {
-				if (response) {
-					console.log(response);
-				}
-			}
-		);
+const HomePage = ({ setAuthenticated }) => {
+	const logoutHandler = () => {
+		auth0.logout({ federated: true, returnTo: goTo(SignInPage) });
+		fetch(`https://${process.env.AUTH0_DOMAIN}/v2/logout?federated=true&client_id=${process.env.AUTH0_CLIENT_ID}`, {
+			credentials: "include",
+			mode: "no-cors",
+		}).catch();
 	};
-	const handleCopy = () => {
-		chrome.storage.local.getBytesInUse(null, (res) => {
-			if (res === 0) {
-				chrome.runtime.sendMessage(
-					{
-						msg: "copy form",
-					},
-					(response) => {
-						if (response) {
-							console.log(response);
-						}
-					}
-				);
-			} else
-				chrome.runtime.sendMessage(
-					{
-						msg: "paste form",
-					},
-					(response) => {
-						if (response) {
-							console.log(response);
-						}
-					}
-				);
-		});
+	const logout = (options) => {
+		logout(options);
+		setAuthenticated(false);
 	};
 	return (
 		<Section>
 			<Header>
-				<Icon src={copy} alt="COPY" onClick={handleCopy} />
-				<HeaderBtn onClick={() => goTo(AddPage)}>+</HeaderBtn>
+				<PrimaryBtnSm onClick={handleCopy}>Copy</PrimaryBtnSm>
+				<DangerBtnSm onClick={logoutHandler}>Logout</DangerBtnSm>
+				<TertiaryBtnSm onClick={handlePaste}>Paste</TertiaryBtnSm>
 			</Header>
 			{data.map((item, index) => {
 				return (
@@ -67,6 +43,9 @@ const HomePage = () => {
 					</ListItems>
 				);
 			})}
+			<AddBtnContainer>
+				<PrimaryBtn onClick={() => goTo(AddPage)}>Add new</PrimaryBtn>
+			</AddBtnContainer>
 		</Section>
 	);
 };

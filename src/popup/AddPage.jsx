@@ -3,7 +3,7 @@ import { useState } from "react";
 import { goTo } from "react-chrome-extension-router";
 
 import { Section, Form, Label, InputWrapper, PaddingBtm } from "../styles/Form.styles";
-import { PrimaryBtn, DangerBtn } from "../styles/Button.styles";
+import { PrimaryBtnMarginRight, DangerBtnMarginRight } from "../styles/Button.styles";
 import { createPosts, fetchPost } from "../api";
 import HomePage from "./HomePage";
 
@@ -113,10 +113,10 @@ const AddPage = () => {
 					</label>
 				</InputWrapper>
 				<InputWrapper>
-					<PrimaryBtn type="submit" onClick={handleSubmit}>
+					<PrimaryBtnMarginRight type="submit" onClick={handleSubmit}>
 						Save Changes
-					</PrimaryBtn>
-					<DangerBtn onClick={handleCancel}>Cancel</DangerBtn>
+					</PrimaryBtnMarginRight>
+					<DangerBtnMarginRight onClick={handleCancel}>Cancel</DangerBtnMarginRight>
 				</InputWrapper>
 				<PaddingBtm />
 			</Form>
