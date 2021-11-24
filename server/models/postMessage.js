@@ -7,6 +7,7 @@ const postSchema = mongoose.Schema({
 	closing: String,
 	status: String,
 	color: String,
+	userId: String,
 });
 
 const PostMessage = mongoose.model("PostMessage", postSchema);

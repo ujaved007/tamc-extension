@@ -13,7 +13,8 @@ import EditPage from "./EditPage";
 import AddPage from "./AddPage";
 import SignInPage from "./SignInPage";
 
-const HomePage = ({ setAuthenticated }) => {
+const HomePage = (props) => {
+	const { setAuthenticated, userId } = props;
 	const logoutHandler = () => {
 		auth0.logout({ federated: true, returnTo: goTo(SignInPage) });
 		fetch(`https://${process.env.AUTH0_DOMAIN}/v2/logout?federated=true&client_id=${process.env.AUTH0_CLIENT_ID}`, {
@@ -37,14 +38,14 @@ const HomePage = ({ setAuthenticated }) => {
 					<ListItems key={index} color={item.color} onClick={() => handleListClick(item)}>
 						<div> {item.name}</div>
 						<div>
-							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage)} />
+							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { userId })} />
 							<Icon src={del} alt="delete" />
 						</div>
 					</ListItems>
 				);
 			})}
 			<AddBtnContainer>
-				<PrimaryBtn onClick={() => goTo(AddPage)}>Add new</PrimaryBtn>
+				<PrimaryBtn onClick={() => goTo(AddPage, { userId })}>Add new</PrimaryBtn>
 			</AddBtnContainer>
 		</Section>
 	);

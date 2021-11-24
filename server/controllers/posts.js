@@ -10,12 +10,19 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPosts = async (req, res) => {
-	const post = req.body;
-	const newPost = new PostMessage(post);
-
+	console.log(req.body);
+	const newPostMessage = new PostMessage({
+		name: req.body.name,
+		title: req.body.title,
+		details: req.body.details,
+		closing: req.body.closing,
+		status: req.body.status,
+		color: req.body.color,
+		userId: req.body.userId,
+	});
 	try {
-		await newPost.save();
-		res.status(201).json(newPost);
+		await newPostMessage.save();
+		res.status(201).json(newPostMessage);
 	} catch (error) {
 		res.status(409).json({ message: error.message });
 	}

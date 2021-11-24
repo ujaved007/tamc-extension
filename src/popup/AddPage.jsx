@@ -4,18 +4,18 @@ import { goTo } from "react-chrome-extension-router";
 
 import { Section, Form, Label, InputWrapper, PaddingBtm } from "../styles/Form.styles";
 import { PrimaryBtnMarginRight, DangerBtnMarginRight } from "../styles/Button.styles";
-import { createPosts, fetchPost } from "../api";
+import { createPost, fetchPost } from "../api";
 import HomePage from "./HomePage";
 
-const AddPage = () => {
-	const initialState = { name: "", title: "", details: "", closing: "", status: "", color: "" };
+const AddPage = ({ userId }) => {
+	const initialState = { name: "", title: "", details: "", closing: "", status: "", color: "", userId };
 	const [postData, setPostData] = useState(initialState);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// createPosts(postData);
+		createPost(postData);
 		console.log(postData);
 		setPostData(initialState);
-		goTo(HomePage);
+		// goTo(HomePage);
 	};
 
 	const handleCancel = () => {
@@ -25,7 +25,7 @@ const AddPage = () => {
 
 	return (
 		<Section>
-			<Form>
+			<Form method="POST">
 				<InputWrapper>
 					<Label for="name">Log Title:</Label>
 					<br />

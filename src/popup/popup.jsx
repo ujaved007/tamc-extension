@@ -10,14 +10,17 @@ import SignInPage from "./SignInPage";
 
 const App = () => {
 	const [authenticated, setAuthenticated] = useState(false);
+	const [userId, setUserId] = useState("");
 
 	const checkAuthentication = async () => {
 		await auth0.isAuthenticated().then((res) => setAuthenticated(res));
+		await auth0.getUser().then((res) => setUserId(res.sub));
 	};
 	checkAuthentication();
+
 	return (
 		<Router>
-			<div>{authenticated ? <HomePage setAuthenticated={setAuthenticated} /> : <SignInPage />}</div>
+			<div>{authenticated ? <HomePage setAuthenticated={setAuthenticated} userId={userId} /> : <SignInPage />}</div>
 		</Router>
 	);
 };
