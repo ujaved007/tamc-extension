@@ -10,8 +10,7 @@ export default [
 	{
 		name: "Inactive Alarm. Multiple staff on-site",
 		title: "CCURE Alarm Investigation",
-		details:
-			"Ref journal. Multiple staff members are working on-site. Alarm inactive and acknowledged",
+		details: "Ref journal. Multiple staff members are working on-site. Alarm inactive and acknowledged",
 		closing: "Usama Javed",
 		status: "Closed",
 		color: "green",
@@ -19,8 +18,7 @@ export default [
 	{
 		name: "Inactive Alarm. Multiple staff. P1 site",
 		title: "CCURE Alarm Investigation",
-		details:
-			"Ref journal. Multiple staff are working on-site. P1 site. Alarm inactive and acknowledged",
+		details: "Ref journal. Multiple staff are working on-site. P1 site. Alarm inactive and acknowledged",
 		closing: "Usama Javed",
 		status: "Closed",
 		color: "green",
@@ -36,8 +34,7 @@ export default [
 	{
 		name: "Active Alarm. Multiple staff on-site",
 		title: "CCURE Alarm Investigation",
-		details:
-			"Ref journal. Multiple staff are working on-site. Alarm active and under observation",
+		details: "Ref journal. Multiple staff are working on-site. Alarm active and under observation",
 		closing: "Usama Javed",
 		status: "Open",
 		color: "orange",
@@ -45,8 +42,7 @@ export default [
 	{
 		name: "Active Alarm. Multiple staff. P1 site",
 		title: "CCURE Alarm Investigation",
-		details:
-			"Ref journal. Multiple staff are working on-site. P1 site. Alarm active and under observation",
+		details: "Ref journal. Multiple staff are working on-site. P1 site. Alarm active and under observation",
 		closing: "Usama Javed",
 		status: "Open",
 		color: "orange",
@@ -76,4 +72,32 @@ export default [
 		status: "Closed",
 		color: "red",
 	},
+];
+
+export const staff = [
+	"",
+	"Aaron Storer",
+	"Abdullah Saqib",
+	"Amit Kumar",
+	"Arshed Al Obaidi",
+	"Arvinder Toor",
+	"Atul Lalotra",
+	"Daniel Deeb",
+	"Don Jayakody",
+	"Ehpoomoo Kunoo",
+	"Furqan Tahir",
+	"Gavin Rozario",
+	"Hamza Khan",
+	"Harjeet Singh",
+	"Harris Yianoulatos",
+	"Hussein Al Shammary",
+	"Lisa Wilkins",
+	"Majid Butt",
+	"Matthew Todorovski",
+	"Muhammad Khan",
+	"Nobert Francois",
+	"Prabhjot Kaur",
+	"Rana Hamza Mushtaq",
+	"Simarpreet Kaur Walia",
+	"Usama Javed",
 ];

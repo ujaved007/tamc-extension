@@ -5,6 +5,7 @@ import { goTo } from "react-chrome-extension-router";
 import { Section, Form, Label, InputWrapper, PaddingBtm } from "../styles/Form.styles";
 import { PrimaryBtnMarginRight, DangerBtnMarginRight } from "../styles/Button.styles";
 import { createPost, fetchPost } from "../api";
+import { staff } from "../utils/data";
 import HomePage from "./HomePage";
 
 const AddPage = ({ userId }) => {
@@ -68,14 +69,17 @@ const AddPage = ({ userId }) => {
 				<InputWrapper>
 					<Label for="closing">Closing Guard:</Label>
 					<br />
-					<input
-						type="text"
+					<select
 						id="closing"
 						name="closing"
-						className="text-field"
+						className="dropdown"
 						value={postData.closing}
 						onChange={(e) => setPostData({ ...postData, closing: e.target.value })}
-					/>
+					>
+						{staff.map((item) => {
+							return <option value={item}>{item}</option>;
+						})}
+					</select>
 					<br />
 				</InputWrapper>
 				<InputWrapper>
