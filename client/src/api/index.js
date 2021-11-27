@@ -8,30 +8,53 @@ export const fetchPosts = (id) =>
 		.then((res) => res.data)
 		.catch((err) => console.log(err));
 
-export const createPost = (data) => {
-	fetch("http://localhost:5000/posts", {
+// export const createPost = (data) => {
+// 	fetch("http://localhost:5000/posts", {
+// 		method: "POST",
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 		},
+// 		body: JSON.stringify(data),
+// 	})
+// 		.then((response) => response.json())
+// 		.catch((error) => {
+// 			console.error("Error:", error);
+// 		});
+// };
+
+export const createPost = async (data) => {
+	const settings = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(data),
-	})
-		.then((response) => response.json())
-		.catch((error) => {
-			console.error("Error:", error);
+	};
+	try {
+		const fetchRes = await fetch("http://localhost:5000/posts", settings);
+		const data = await fetchRes.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const updatePost = async (id, data) => {
+	try {
+		await axios(`${url}/${id}`, {
+			method: "PATCH",
+			data: data,
 		});
+	} catch (error) {
+		console.log(error);
+	}
+	// .then((res) => res.json())
 };
 
-export const updatePost = (id, data) => {
-	axios(`${url}/${id}`, {
-		method: "PATCH",
-		data: data,
-	})
-		// .then((res) => res.json())
-		.then((da) => console.log(da))
-		.catch((error) => console.log(error));
-};
-
-export const deletePost = (id) => {
-	axios.delete(`${url}/${id}`).catch(() => console.log("abay loru"));
+export const deletePost = async (id) => {
+	try {
+		await axios.delete(`${url}/${id}`);
+	} catch (error) {
+		console.log(error);
+	}
 };

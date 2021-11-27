@@ -38,7 +38,10 @@ export const ListItems = styled.div`
 			return props.theme.colors.red;
 		} else if (props.color === "orange") {
 			return props.theme.colors.orange;
-		} else return props.theme.colors.green;
+		} else if (props.color === "yellow") {
+			return props.theme.colors.yellow;
+		}
+		return props.theme.colors.green;
 	}};
 	border-radius: 10px;
 	margin: 0px 10px 10px 10px;

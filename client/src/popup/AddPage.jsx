@@ -9,9 +9,8 @@ const AddPage = ({ userId, data }) => {
 	const [postData, setPostData] = useState(initialState);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await mutate({ ...data }, postData);
-		createPost(postData);
-		// mutate(`http://localhost:5000/posts/${userId}`, false);
+		mutate({ ...data }, postData);
+		await createPost(postData);
 		setPostData(initialState);
 		goBack();
 	};

@@ -6,9 +6,9 @@ import { mutate } from "swr";
 
 const EditPage = ({ item }) => {
 	const [postData, setPostData] = useState(item);
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		updatePost(item._id, postData);
+		await updatePost(item._id, postData);
 		mutate(`http://localhost:5000/posts/${item._id}`);
 		goBack();
 	};

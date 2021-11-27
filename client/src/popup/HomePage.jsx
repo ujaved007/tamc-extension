@@ -40,9 +40,9 @@ const HomePage = ({ userId }) => {
 							<Icon
 								src={del}
 								alt="delete"
-								onClick={() => {
+								onClick={async () => {
+									await deletePost(item._id);
 									mutate(`http://localhost:5000/posts/${userId}`);
-									deletePost(item._id);
 								}}
 							/>
 						</div>
