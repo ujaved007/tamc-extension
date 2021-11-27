@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { goBack } from "react-chrome-extension-router";
+import { updatePost } from "../api";
+import Form from "../components/Form";
+import { mutate } from "swr";
 
-const EditPage = () => {
-	return <div>Edit PAge</div>;
+const EditPage = ({ item }) => {
+	const [postData, setPostData] = useState(item);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		updatePost(item._id, postData);
+		mutate(`http://localhost:5000/posts/${item._id}`);
+		goBack();
+	};
+
+	const handleCancel = () => {
+		setPostData(item);
+		goBack();
+	};
+
+	return <Form postData={postData} setPostData={setPostData} handleSubmit={handleSubmit} handleCancel={handleCancel} />;
 };
 
 export default EditPage;

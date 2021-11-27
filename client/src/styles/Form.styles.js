@@ -4,7 +4,7 @@ export const Section = styled.section`
 	margin: 20px 20px 30px 20px;
 `;
 
-export const Form = styled.form`
+export const FormElem = styled.form`
 	width: 100%;
 	.text-field {
 		background-color: transparent;
