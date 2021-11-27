@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/posts";
-
 export const fetchPosts = (id) =>
 	axios
-		.get(`${url}/${id}`)
+		.get(`${process.env.API_URL}/${id}`)
 		.then((res) => res.data)
 		.catch((err) => console.log(err));
 
@@ -31,7 +29,7 @@ export const createPost = async (data) => {
 		body: JSON.stringify(data),
 	};
 	try {
-		const fetchRes = await fetch("http://localhost:5000/posts", settings);
+		const fetchRes = await fetch(`${process.env.API_URL}`, settings);
 		const data = await fetchRes.json();
 		return data;
 	} catch (error) {
@@ -41,7 +39,7 @@ export const createPost = async (data) => {
 
 export const updatePost = async (id, data) => {
 	try {
-		await axios(`${url}/${id}`, {
+		await axios(`${process.env.API_URL}/${id}`, {
 			method: "PATCH",
 			data: data,
 		});
@@ -53,7 +51,7 @@ export const updatePost = async (id, data) => {
 
 export const deletePost = async (id) => {
 	try {
-		await axios.delete(`${url}/${id}`);
+		await axios.delete(`${process.env.API_URL}/${id}`);
 	} catch (error) {
 		console.log(error);
 	}

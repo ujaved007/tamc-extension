@@ -17,7 +17,7 @@ import AddPage from "./AddPage";
 // const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const HomePage = ({ userId }) => {
-	const { data, error } = useSWR(`http://localhost:5000/posts/${userId}`, {
+	const { data, error } = useSWR(`${process.env.API_URL}/${userId}`, {
 		revalidateOnFocus: false,
 		revalidateOnMount: true,
 	});
@@ -42,7 +42,7 @@ const HomePage = ({ userId }) => {
 								alt="delete"
 								onClick={async () => {
 									await deletePost(item._id);
-									mutate(`http://localhost:5000/posts/${userId}`);
+									mutate(`${process.env.API_URL}/${userId}`);
 								}}
 							/>
 						</div>
