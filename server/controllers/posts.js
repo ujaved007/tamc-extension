@@ -2,7 +2,7 @@ import PostMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
 	try {
-		const postMessages = await PostMessage.find();
+		const postMessages = await PostMessage.find({ userId: req.params.userId });
 		res.status(200).json(postMessages);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
@@ -10,7 +10,6 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPosts = async (req, res) => {
-	console.log(req.body);
 	const newPostMessage = new PostMessage({
 		name: req.body.name,
 		title: req.body.title,

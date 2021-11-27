@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { goTo } from "react-chrome-extension-router";
+import { goBack, goTo } from "react-chrome-extension-router";
+import { mutate } from "swr";
 
 import { Section, Form, Label, InputWrapper, PaddingBtm } from "../styles/Form.styles";
 import { PrimaryBtnMarginRight, DangerBtnMarginRight } from "../styles/Button.styles";
@@ -8,20 +9,21 @@ import { createPost, fetchPost } from "../api";
 import { staff } from "../utils/data";
 import HomePage from "./HomePage";
 
-const AddPage = ({ userId }) => {
+const AddPage = ({ userId, data }) => {
 	const initialState = { name: "", title: "", details: "", closing: "", status: "", color: "", userId };
 	const [postData, setPostData] = useState(initialState);
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		mutate(`http://localhost:5000/posts/${userId}`, { ...data, postData }, false);
 		createPost(postData);
-		console.log(postData);
+		mutate(`http://localhost:5000/posts/${userId}`);
 		setPostData(initialState);
-		// goTo(HomePage);
+		goBack();
 	};
 
 	const handleCancel = () => {
 		setPostData(initialState);
-		goTo(HomePage);
+		goBack();
 	};
 
 	return (
