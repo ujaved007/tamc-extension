@@ -21,6 +21,22 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 					<br />
 				</InputWrapper>
 				<InputWrapper>
+					<Label for="opening">Opening Guard:</Label>
+					<br />
+					<select
+						id="opening"
+						name="opening"
+						className="dropdown"
+						value={postData.opening}
+						onChange={(e) => setPostData({ ...postData, opening: e.target.value })}
+					>
+						{staff.map((item) => {
+							return <option value={item}>{item}</option>;
+						})}
+					</select>
+					<br />
+				</InputWrapper>
+				<InputWrapper>
 					<Label for="title">Log Type:</Label>
 					<br />
 					<select

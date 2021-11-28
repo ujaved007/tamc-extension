@@ -1,7 +1,8 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.msg === "autofill daily log") {
-		const { closing, details, status, title } = request.data;
-		chrome.storage.local.set({ closing, details, status, title });
+		const { opening, closing, details, status, title } = request.data;
+		console.log("background");
+		chrome.storage.local.set({ opening, closing, details, status, title });
 		chrome.tabs.query({ active: true, currentWindow: true }, (res) => {
 			let tabId = res[0].id;
 			chrome.scripting.executeScript({

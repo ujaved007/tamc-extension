@@ -13,6 +13,7 @@ export const getPosts = async (req, res) => {
 export const createPosts = async (req, res) => {
 	const newPostMessage = new PostMessage({
 		name: req.body.name,
+		opening: req.body.opening,
 		title: req.body.title,
 		details: req.body.details,
 		closing: req.body.closing,

@@ -1,11 +1,12 @@
 import { fillTextField, selectDropdown } from "../utils/selectorFuncs";
 
-chrome.storage.local.get(["title", "details", "closing", "status"], (res) => {
+chrome.storage.local.get(["opening", "title", "details", "closing", "status"], (res) => {
 	DailyLog(res);
-	chrome.storage.local.remove(["title", "details", "closing", "status"]);
+	chrome.storage.local.remove(["opening", "title", "details", "closing", "status"]);
 });
 
 function DailyLog(data) {
+	selectDropdown(document.querySelectorAll('select[name$="REQGUARD"]'), data.opening);
 	selectDropdown(document.querySelectorAll('select[name$="REQTYPE"]'), data.title);
 	fillTextField(document.querySelector('textarea[name$="DETAILS"]'), data.details);
 	selectDropdown(document.querySelectorAll('select[name$="CLOSINGGUARD"]'), data.closing);

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { goTo } from "react-chrome-extension-router";
 import useSWR, { mutate } from "swr";
-import { fetchPosts } from "../api";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
 import { deletePost } from "../api";
@@ -13,8 +12,6 @@ import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
 import EditPage from "./EditPage";
 import AddPage from "./AddPage";
-
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const HomePage = ({ userId }) => {
 	const { data, error } = useSWR(`${process.env.API_URL}/${userId}`, {
