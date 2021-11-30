@@ -4,11 +4,29 @@ Chrome extension created for <b>Telstra</b> Alarm Monitoring Centre for their da
 
 (_Please note the extension is specifically created for a specific website so it won't work on all forms_)
 
-## Tech Stack:
+### Tech Stack:
+
+---
 
 MERN (MongoDb, Express, React & Node) Stack Application.
 
-## Features:
+### UI Screenshots:
+
+---
+
+<img src="readme-assets/Signin-prompt.jpg" width="250">
+<img src="readme-assets/Homescreen.jpg" width="250">
+<img src="readme-assets/addedit.jpg" width="250">
+
+### How to install:
+
+---
+
+Turn on developer mode and drag and drop the .crx file on the extension page. Works with most chromium based browers including Google chrome, Microsoft Edge, Opera etc.
+
+### Features:
+
+---
 
 - Authentication via Auth0
 
@@ -22,7 +40,9 @@ MERN (MongoDb, Express, React & Node) Stack Application.
 
   ![Copy Paste gif](readme-assets/CopyPaste.gif)
 
-## Upcoming Features:
+### Upcoming Features:
+
+---
 
 - Ability to reorder posts by drag to re-order
 - Animations and UI/UX improvements
