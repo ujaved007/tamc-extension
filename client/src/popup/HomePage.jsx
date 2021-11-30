@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { goTo } from "react-chrome-extension-router";
 import useSWR, { mutate } from "swr";
 
@@ -14,19 +14,25 @@ import EditPage from "./EditPage";
 import AddPage from "./AddPage";
 
 const HomePage = ({ userId }) => {
+	const [copyMsg, setCopyMsg] = useState("");
+	const [pasteMsg, setPasteMsg] = useState("");
+
 	const { data, error } = useSWR(`${process.env.API_URL}/${userId}`, {
 		revalidateOnFocus: false,
 		revalidateOnMount: true,
 	});
 	if (!data) return "Loading...";
 	if (error) return "there was an error";
-
 	return (
 		<Section>
 			<Header>
-				<PrimaryBtnSm onClick={handleCopy}>Copy</PrimaryBtnSm>
+				<PrimaryBtnSm onClick={() => handleCopy(setCopyMsg)}>
+					{copyMsg.length === 0 ? `Copy` : `${copyMsg}`}
+				</PrimaryBtnSm>
 				<DangerBtnSm onClick={logoutHandler}>Logout</DangerBtnSm>
-				<TertiaryBtnSm onClick={handlePaste}>Paste</TertiaryBtnSm>
+				<TertiaryBtnSm onClick={() => handlePaste(setPasteMsg)}>
+					{pasteMsg.length === 0 ? `Paste` : `${pasteMsg}`}
+				</TertiaryBtnSm>
 			</Header>
 			{data.map((item) => {
 				return (

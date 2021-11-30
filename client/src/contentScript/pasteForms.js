@@ -1,4 +1,4 @@
-import { fillTextField, selectDropdownPatrol, selectDropdown } from "../utils/selectorFuncs";
+import { fillTextField, selectDropdown } from "../utils/selectorFuncs";
 
 chrome.storage.local.get(
 	["reqtime", "reqguard", "details", "sitename", "sitestate", "alarmtime", "alarmpoint"],

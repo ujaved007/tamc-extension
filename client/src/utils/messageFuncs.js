@@ -11,26 +11,26 @@ export const handleListClick = (data) => {
 		}
 	);
 };
-export const handleCopy = () => {
+export const handleCopy = (setRes) => {
 	chrome.runtime.sendMessage(
 		{
 			msg: "copy form",
 		},
 		(response) => {
 			if (response) {
-				console.log(response);
+				setRes(response);
 			}
 		}
 	);
 };
-export const handlePaste = () => {
+export const handlePaste = (setRes) => {
 	chrome.runtime.sendMessage(
 		{
 			msg: "paste form",
 		},
 		(response) => {
 			if (response) {
-				console.log(response);
+				setRes(response);
 			}
 		}
 	);
