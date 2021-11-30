@@ -4,7 +4,15 @@ import useSWR, { mutate } from "swr";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
 import { deletePost } from "../api";
-import { Section, Header, ListItems, Icon, AddBtnContainer } from "../styles/HomePage.styles";
+import {
+	Section,
+	Header,
+	ListItems,
+	ListNameContainer,
+	ListIconsContainer,
+	Icon,
+	AddBtnContainer,
+} from "../styles/HomePage.styles";
 import { PrimaryBtn, PrimaryBtnSm, DangerBtnSm, TertiaryBtnSm } from "../styles/Button.styles";
 import { logoutHandler } from "../utils/logouthandler";
 
@@ -36,9 +44,9 @@ const HomePage = ({ userId }) => {
 			</Header>
 			{data.map((item) => {
 				return (
-					<ListItems key={item._id} color={item.color} onClick={() => handleListClick(item)}>
-						<div> {item.name}</div>
-						<div>
+					<ListItems key={item._id} color={item.color}>
+						<ListNameContainer onClick={() => handleListClick(item)}> {item.name}</ListNameContainer>
+						<ListIconsContainer>
 							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { item })} />
 							<Icon
 								src={del}
@@ -48,7 +56,7 @@ const HomePage = ({ userId }) => {
 									mutate(`${process.env.API_URL}/${userId}`);
 								}}
 							/>
-						</div>
+						</ListIconsContainer>
 					</ListItems>
 				);
 			})}

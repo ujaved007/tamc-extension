@@ -12,7 +12,7 @@ const App = () => {
 
 	const handleClick = async () => {
 		await auth0.loginWithPopup();
-		user = await auth0.getUser();
+		const user = await auth0.getUser();
 		setLoginMessage(user.nickname);
 	};
 

@@ -45,7 +45,6 @@ export const ListItems = styled.div`
 	}};
 	border-radius: 10px;
 	margin: 0px 10px 10px 10px;
-	padding: 20px 10px 20px 10px;
 	color: ${(props) => props.theme.colors.text};
 	font-size: 1rem;
 	&:hover {
@@ -65,4 +64,15 @@ export const AddBtnContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	margin: 5px 0px 15px 0px;
+`;
+
+export const ListNameContainer = styled.div`
+	width: 100%;
+	padding: 20px 10px;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const ListIconsContainer = styled.div`
+	display: flex;
 `;
