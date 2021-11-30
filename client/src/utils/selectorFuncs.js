@@ -16,14 +16,14 @@ function selectDropdown(field, value) {
 		options[0].setAttribute("selected", "");
 	}
 }
-function selectDropdownPatrol(field, value) {
-	for (const entry of field.entries()) {
-		const children = entry[1].childNodes;
-		const options = Array.prototype.filter.call(
-			children,
-			(option) => option.nodeType === Node.ELEMENT_NODE && option.text === value
-		);
-		options[0].setAttribute("selected", "");
-	}
-}
-export { fillTextField, selectDropdown, selectDropdownPatrol };
+// function selectDropdownPatrol(field, value) {
+// 	for (const entry of field.entries()) {
+// 		const children = entry[1].childNodes;
+// 		const options = Array.prototype.filter.call(
+// 			children,
+// 			(option) => option.nodeType === Node.ELEMENT_NODE && option.text === value
+// 		);
+// 		options[0].setAttribute("selected", "");
+// 	}
+// }
+export { fillTextField, selectDropdown };
