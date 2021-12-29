@@ -60,6 +60,10 @@ export const Icon = styled.img`
 	}
 `;
 
+export const LoadingIcon = styled.img`
+	width: 50%;
+`;
+
 export const AddBtnContainer = styled.div`
 	display: flex;
 	justify-content: center;

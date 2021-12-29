@@ -12,12 +12,15 @@ import {
 	ListIconsContainer,
 	Icon,
 	AddBtnContainer,
+	LoadingIcon,
 } from "../styles/HomePage.styles";
 import { PrimaryBtn, PrimaryBtnSm, DangerBtnSm, TertiaryBtnSm } from "../styles/Button.styles";
+import { HorizontalWrapper } from "../styles/Main.styles";
 import { logoutHandler } from "../utils/logouthandler";
 
 import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
+import loading from "../assets/loading.gif";
 import EditPage from "./EditPage";
 import AddPage from "./AddPage";
 
@@ -29,7 +32,12 @@ const HomePage = ({ userId }) => {
 		revalidateOnFocus: false,
 		revalidateOnMount: true,
 	});
-	if (!data) return "Loading...";
+	if (!data)
+		return (
+			<HorizontalWrapper>
+				<LoadingIcon src={loading} alt="loading.." />
+			</HorizontalWrapper>
+		);
 	if (error) return "there was an error";
 	return (
 		<Section>
