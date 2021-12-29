@@ -49,6 +49,9 @@ module.exports = {
 		extensions: [".jsx", ".js"],
 	},
 	plugins: [
+		new Dotenv({
+			path: ".env",
+		}),
 		new CleanWebpackPlugin({
 			cleanStaleWebpackAssets: false,
 		}),
@@ -61,7 +64,6 @@ module.exports = {
 			],
 		}),
 		...getHtmlPlugins(["popup", "options"]),
-		new Dotenv(),
 	],
 	output: {
 		filename: "[name].js",
