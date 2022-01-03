@@ -24,6 +24,9 @@ export const FormElem = styled.form`
 		margin-top: 10px;
 		padding: 5px 5px 5px 5px;
 	}
+	option {
+		color: ${(props) => props.theme.colors.bg};
+	}
 	textarea {
 		background-color: transparent;
 		color: ${(props) => props.theme.colors.text};
@@ -33,6 +36,7 @@ export const FormElem = styled.form`
 		margin-top: 10px;
 		padding: 5px 5px 5px 5px;
 	}
+
 	p {
 		font-size: 1rem;
 		margin-bottom: 2 px;

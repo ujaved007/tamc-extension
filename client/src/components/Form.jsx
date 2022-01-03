@@ -23,17 +23,19 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 				<InputWrapper>
 					<Label for="opening">Opening Guard:</Label>
 					<br />
-					<select
-						id="opening"
-						name="opening"
-						className="dropdown"
-						value={postData.opening}
-						onChange={(e) => setPostData({ ...postData, opening: e.target.value })}
-					>
-						{staff.map((item) => {
-							return <option value={item}>{item}</option>;
-						})}
-					</select>
+					<div className="select">
+						<select
+							id="opening"
+							name="opening"
+							className="dropdown"
+							value={postData.opening}
+							onChange={(e) => setPostData({ ...postData, opening: e.target.value })}
+						>
+							{staff.map((item) => {
+								return <option value={item}>{item}</option>;
+							})}
+						</select>
+					</div>
 					<br />
 				</InputWrapper>
 				<InputWrapper>
@@ -49,6 +51,7 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 						<option value=""></option>
 						<option value="CCURE Alarm Investigation">CCURE Alarm Investigation</option>
 						<option value="Faulty Alarm Log">Faulty Alarm Log</option>
+						<option value="SAPIO Alarm Investigation">SAPIO Alarm</option>
 					</select>
 				</InputWrapper>
 				<InputWrapper>
