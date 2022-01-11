@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { goTo } from "react-chrome-extension-router";
 import useSWR, { mutate } from "swr";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
 import { deletePost } from "../api";
@@ -25,13 +26,14 @@ import EditPage from "./EditPage";
 import AddPage from "./AddPage";
 
 const HomePage = ({ userId }) => {
-	const [copyMsg, setCopyMsg] = useState("");
-	const [pasteMsg, setPasteMsg] = useState("");
-
 	const { data, error } = useSWR(`${process.env.API_URL}/${userId}`, {
 		revalidateOnFocus: false,
 		revalidateOnMount: true,
 	});
+
+	const [copyMsg, setCopyMsg] = useState("");
+	const [pasteMsg, setPasteMsg] = useState("");
+
 	if (!data)
 		return (
 			<HorizontalWrapper>
@@ -50,24 +52,44 @@ const HomePage = ({ userId }) => {
 					{pasteMsg.length === 0 ? `Paste` : `${pasteMsg}`}
 				</TertiaryBtnSm>
 			</Header>
-			{data.map((item) => {
-				return (
-					<ListItems key={item._id} color={item.color}>
-						<ListNameContainer onClick={() => handleListClick(item)}> {item.name}</ListNameContainer>
-						<ListIconsContainer>
-							<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { item })} />
-							<Icon
-								src={del}
-								alt="delete"
-								onClick={async () => {
-									await deletePost(item._id);
-									mutate(`${process.env.API_URL}/${userId}`);
-								}}
-							/>
-						</ListIconsContainer>
-					</ListItems>
-				);
-			})}
+			<DragDropContext>
+				<Droppable droppableId="list">
+					{(provided) => (
+						<div {...provided.droppableProps} ref={provided.innerRef}>
+							{data.map((item, index) => {
+								return (
+									<Draggable key={item._id} draggableId={item._id} index={index}>
+										{(provided) => (
+											<ListItems
+												color={item.color}
+												{...provided.draggableProps}
+												{...provided.dragHandleProps}
+												ref={provided.innerRef}
+											>
+												<ListNameContainer onClick={() => handleListClick(item)}>
+													{item.name} {index}
+												</ListNameContainer>
+												<ListIconsContainer>
+													<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { item })} />
+													<Icon
+														src={del}
+														alt="delete"
+														onClick={async () => {
+															await deletePost(item._id);
+															mutate(`${process.env.API_URL}/${userId}`);
+														}}
+													/>
+												</ListIconsContainer>
+											</ListItems>
+										)}
+									</Draggable>
+								);
+							})}
+							{provided.placeholder}
+						</div>
+					)}
+				</Droppable>
+			</DragDropContext>
 			<AddBtnContainer>
 				<PrimaryBtn onClick={() => goTo(AddPage, { userId, data })}>Add new</PrimaryBtn>
 			</AddBtnContainer>

@@ -31,8 +31,12 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 							value={postData.opening}
 							onChange={(e) => setPostData({ ...postData, opening: e.target.value })}
 						>
-							{staff.map((item) => {
-								return <option value={item}>{item}</option>;
+							{staff.map((item, index) => {
+								return (
+									<option value={item} key={index}>
+										{item}
+									</option>
+								);
 							})}
 						</select>
 					</div>
@@ -75,8 +79,12 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 						value={postData.closing}
 						onChange={(e) => setPostData({ ...postData, closing: e.target.value })}
 					>
-						{staff.map((item) => {
-							return <option value={item}>{item}</option>;
+						{staff.map((item, index) => {
+							return (
+								<option value={item} key={index}>
+									{item}
+								</option>
+							);
 						})}
 					</select>
 					<br />
