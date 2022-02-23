@@ -9,7 +9,7 @@ import { SWRConfig } from "swr";
 import HomePage from "./HomePage";
 import SignInPage from "./SignInPage";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const App = () => {
 	const [authenticated, setAuthenticated] = useState(false);
@@ -33,9 +33,9 @@ document.body.appendChild(root);
 ReactDOM.render(
 	<ThemeProvider theme={Theme}>
 		<GlobalStyles />
-		<SWRConfig value={{ fetcher }}>
-			<App />
-		</SWRConfig>
+		{/* <SWRConfig value={{ fetcher }}> */}
+		<App />
+		{/* </SWRConfig> */}
 	</ThemeProvider>,
 	root
 );

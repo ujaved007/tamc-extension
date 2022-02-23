@@ -9,7 +9,7 @@ const EditPage = ({ item }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await updatePost(item._id, postData);
-		mutate(`${process.env.API_URL}/${item._id}`);
+		// mutate(`${process.env.API_URL}/${item._id}`);
 		goBack();
 	};
 
