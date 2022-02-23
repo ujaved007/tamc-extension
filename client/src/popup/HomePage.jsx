@@ -3,7 +3,7 @@ import { goTo } from "react-chrome-extension-router";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
-import { deletePost } from "../api";
+import { updatePost } from "../api";
 import {
 	Section,
 	Header,
@@ -26,10 +26,12 @@ import AddPage from "./AddPage";
 import axios from "axios";
 
 const HomePage = ({ userId }) => {
+	//useEffect for fetching posts
 	useEffect(() => {
-		axios.get(`${process.env.API_URL}/${userId}`).then(
+		axios.get(`${process.env.TEST_URL}/${userId}`).then(
 			(response) => {
-				setData(response.data);
+				const result = response.data;
+				setData(result[0].data);
 			},
 			(error) => {
 				console.log(error);
@@ -41,9 +43,13 @@ const HomePage = ({ userId }) => {
 	const [pasteMsg, setPasteMsg] = useState("");
 	const [data, setData] = useState();
 
-	const handleDelete = (id) => {
+	const handleDelete = async (id) => {
 		const updateArr = data.filter((item) => item._id !== id);
 		setData(updateArr);
+		//format data to get it ready to be inserted back in the database
+		const formatData = { data: updateArr };
+		//update new array in the database
+		await updatePost(userId, formatData);
 	};
 
 	const handleOnDragEnd = (result) => {
@@ -51,7 +57,12 @@ const HomePage = ({ userId }) => {
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 		setData(items);
+		//format data to get it ready to be inserted back in the database
+		const formatData = { data: items };
+		//update new order in the database
+		updatePost(userId, formatData);
 	};
+	console.log(data);
 
 	if (!data)
 		return (
@@ -91,9 +102,8 @@ const HomePage = ({ userId }) => {
 													<Icon
 														src={del}
 														alt="delete"
-														onClick={async () => {
+														onClick={() => {
 															handleDelete(item._id);
-															await deletePost(item._id);
 														}}
 													/>
 												</ListIconsContainer>
