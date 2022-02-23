@@ -7,7 +7,6 @@ import { mutate } from "swr";
 const AddPage = ({ userId, data }) => {
 	const initialState = { name: "", title: "", details: "", closing: "", status: "", color: "", userId };
 	const [postData, setPostData] = useState(initialState);
-	console.log(data);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		mutate({ ...data }, postData);
