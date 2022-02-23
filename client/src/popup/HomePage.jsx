@@ -98,7 +98,7 @@ const HomePage = ({ userId }) => {
 											>
 												<ListNameContainer onClick={() => handleListClick(item)}>{item.name}</ListNameContainer>
 												<ListIconsContainer>
-													<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { item })} />
+													<Icon src={edit} alt="edit" onClick={() => goTo(EditPage, { item, data, userId, index })} />
 													<Icon
 														src={del}
 														alt="delete"

@@ -3,11 +3,13 @@ import { goBack } from "react-chrome-extension-router";
 import { updatePost } from "../api";
 import Form from "../components/Form";
 
-const EditPage = ({ item }) => {
+const EditPage = ({ item, data, userId, index }) => {
 	const [postData, setPostData] = useState(item);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await updatePost(item._id, postData);
+		const updateArray = data.splice(index, 1, postData);
+		const formatData = { data: data };
+		await updatePost(userId, formatData);
 		goBack();
 	};
 
