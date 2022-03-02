@@ -3,7 +3,7 @@ import { goTo } from "react-chrome-extension-router";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
-import { updatePost } from "../api";
+import { updatePost, createPost, fetchPosts } from "../api";
 import {
 	Section,
 	Header,
@@ -31,7 +31,11 @@ const HomePage = ({ userId }) => {
 		axios.get(`${process.env.TEST_URL}/${userId}`).then(
 			(response) => {
 				const result = response.data;
-				setData(result[0].data);
+				// console.log(result);
+				if (result.length === 0) {
+					setData([]);
+					createPost({ userId });
+				} else setData(result[0].data);
 			},
 			(error) => {
 				console.log(error);

@@ -101,3 +101,58 @@ export const staff = [
 	"Simarpreet Kaur Walia",
 	"Usama Javed",
 ];
+
+const data = {
+	_id: "auth0|61a21072ab79c900713f07ae",
+	data: [
+		{
+			name: "another one",
+			opening: "Usama Javed",
+			title: "CCURE Alarm Investigation",
+			details: "sdlaskld",
+			closing: "Aaron Storer",
+			status: "Closed",
+			color: "orange",
+			userId: "auth0|61a21072ab79c900713f07ae",
+			_id: { $oid: "61e24175d3d943520e0e8236" },
+		},
+		{
+			name: "bbbbb",
+			title: "",
+			details: "",
+			closing: "",
+			status: "",
+			color: "",
+			_id: { $oid: "6216223fb044a9789ebf3e89" },
+		},
+		{
+			name: "nnnnnnn",
+			opening: "Ehpoomoo Kunoo",
+			title: "",
+			details: "",
+			closing: "",
+			status: "",
+			color: "green",
+			userId: "auth0|61a21072ab79c900713f07ae",
+			_id: { $oid: "61d26dcae95aea49a5427f83" },
+		},
+		{
+			name: "ggggg",
+			title: "",
+			details: "",
+			closing: "",
+			status: "",
+			color: "",
+			_id: { $oid: "62162169b044a9789ebf3e69" },
+		},
+		{
+			name: "dsdkja",
+			title: "",
+			details: "",
+			closing: "",
+			status: "",
+			color: "yellow",
+			_id: { $oid: "621623888a593ba6bc155497" },
+		},
+	],
+};
