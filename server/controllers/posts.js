@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import { PostMessage, TestPosts } from "../models/postMessage.js";
+import { TestPosts } from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
 	try {
@@ -10,39 +9,39 @@ export const getPosts = async (req, res) => {
 	}
 };
 
-export const createPosts = async (req, res) => {
-	const newPostMessage = new TestPosts({
-		name: req.body.name,
-		opening: req.body.opening,
-		title: req.body.title,
-		details: req.body.details,
-		closing: req.body.closing,
-		status: req.body.status,
-		color: req.body.color,
-		userId: req.body.userId,
-	});
-	try {
-		await newPostMessage.save();
-		res.status(201).json(newPostMessage);
-	} catch (error) {
-		res.status(409).json({ message: error.message });
-	}
-};
-
 export const updatePosts = async (req, res) => {
 	const { id: _id } = req.params;
 	const post = req.body;
-
-	// if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("no post with that id");
-
-	const updatedPost = await TestPosts.findByIdAndUpdate(_id, post, { new: true });
-	res.json(updatedPost);
+	const postExists = (await TestPosts.find({ _id }).count()) > 0;
+	// if no post with that id means account is new so create a new post
+	if (!postExists) {
+		const newPostMessage = new TestPosts({
+			_id,
+			data: [],
+		});
+		try {
+			await newPostMessage.save();
+			const updatedPost = await TestPosts.findByIdAndUpdate(_id, post, { new: true });
+			res.json(updatedPost);
+		} catch (error) {
+			res.status(409).json({ message: error.message });
+		}
+	} else {
+		try {
+			const updatedPost = await TestPosts.findByIdAndUpdate(_id, post, { new: true });
+			res.json(updatedPost);
+		} catch (error) {
+			res.json({ message: error.message });
+		}
+	}
 };
 
 export const deletePosts = async (req, res) => {
 	const { id: _id } = req.params;
-
-	if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("no post with that id");
-	await PostMessage.findByIdAndDelete(_id);
-	res.json({ message: "Post deleted" });
+	try {
+		await TestPosts.findByIdAndDelete(_id);
+		res.json({ message: "Post deleted" });
+	} catch (error) {
+		res.status(404).send("no post with that id");
+	}
 };
