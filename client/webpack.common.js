@@ -63,7 +63,7 @@ module.exports = {
 				},
 			],
 		}),
-		...getHtmlPlugins(["popup", "options", "AddPage"]),
+		...getHtmlPlugins(["popup", "options"]),
 	],
 	output: {
 		filename: "[name].js",

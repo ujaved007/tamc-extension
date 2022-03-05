@@ -10,7 +10,7 @@ const AddPage = ({ userId, data }) => {
 	const [staffNames, setStaffNames] = useState([]);
 	//get staff names
 	useEffect(() => {
-		axios.get(`http://localhost:5000/staff/`).then(
+		axios.get(process.env.TEST_STAFF_URL).then(
 			(response) => {
 				const result = response.data;
 				setStaffNames(result);

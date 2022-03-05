@@ -8,8 +8,9 @@ const EditPage = ({ item, data, userId, index }) => {
 	const [postData, setPostData] = useState(item);
 	const [staffNames, setStaffNames] = useState([]);
 	//get staff names
+	console.log(process.env.TEST_STAFF_URL);
 	useEffect(() => {
-		axios.get(`http://localhost:5000/staff/`).then(
+		axios.get(process.env.TEST_STAFF_URL).then(
 			(response) => {
 				const result = response.data;
 				setStaffNames(result);

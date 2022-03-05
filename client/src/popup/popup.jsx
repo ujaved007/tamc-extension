@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import GlobalStyles from "../styles/GlobalStyles";
 import Theme from "../styles/theme";
 import { ThemeProvider } from "styled-components";
 import { Router } from "react-chrome-extension-router";
 import { auth0 } from "../utils/auth0";
-import { SWRConfig } from "swr";
 import HomePage from "./HomePage";
 import SignInPage from "./SignInPage";
-
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const App = () => {
 	const [authenticated, setAuthenticated] = useState(false);
@@ -33,9 +30,7 @@ document.body.appendChild(root);
 ReactDOM.render(
 	<ThemeProvider theme={Theme}>
 		<GlobalStyles />
-		{/* <SWRConfig value={{ fetcher }}> */}
 		<App />
-		{/* </SWRConfig> */}
 	</ThemeProvider>,
 	root
 );
