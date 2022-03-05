@@ -1,9 +1,8 @@
 import React from "react";
-import { staff } from "../utils/data";
 import { Section, FormElem, Label, InputWrapper, PaddingBtm } from "../styles/Form.styles";
 import { PrimaryBtnMarginRight, DangerBtnMarginRight } from "../styles/Button.styles";
 
-const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
+const Form = ({ postData, setPostData, staffNames, handleSubmit, handleCancel }) => {
 	return (
 		<Section>
 			<FormElem method="POST">
@@ -31,12 +30,14 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 							value={postData.opening}
 							onChange={(e) => setPostData({ ...postData, opening: e.target.value })}
 						>
-							{staff.map((item, index) => {
-								return (
-									<option value={item} key={index}>
-										{item}
-									</option>
-								);
+							{staffNames.map((item) => {
+								return item.data.map((item, index) => {
+									return (
+										<option value={item} key={index}>
+											{item}
+										</option>
+									);
+								});
 							})}
 						</select>
 					</div>
@@ -79,12 +80,14 @@ const Form = ({ postData, setPostData, handleSubmit, handleCancel }) => {
 						value={postData.closing}
 						onChange={(e) => setPostData({ ...postData, closing: e.target.value })}
 					>
-						{staff.map((item, index) => {
-							return (
-								<option value={item} key={index}>
-									{item}
-								</option>
-							);
+						{staffNames.map((item) => {
+							return item.data.map((item, index) => {
+								return (
+									<option value={item} key={index}>
+										{item}
+									</option>
+								);
+							});
 						})}
 					</select>
 					<br />

@@ -3,7 +3,7 @@ import { goTo } from "react-chrome-extension-router";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { handleCopy, handlePaste, handleListClick } from "../utils/messageFuncs";
-import { updatePost, createPost, fetchPosts } from "../api";
+import { updatePost } from "../api";
 import {
 	Section,
 	Header,
@@ -31,21 +31,28 @@ const HomePage = ({ userId }) => {
 		axios.get(`${process.env.TEST_URL}/${userId}`).then(
 			(response) => {
 				const result = response.data;
-				// console.log(result);
 				if (result.length === 0) {
 					setData([]);
-					createPost({ userId });
-				} else setData(result[0].data);
+				} else {
+					setData(result[0].data);
+				}
 			},
 			(error) => {
 				console.log(error);
 			}
 		);
-	}, [userId, data]);
+	}, [data, userId]);
 
 	const [copyMsg, setCopyMsg] = useState("");
 	const [pasteMsg, setPasteMsg] = useState("");
-	const [data, setData] = useState();
+	const [data, setData] = useState(null);
+
+	if (!data)
+		return (
+			<HorizontalWrapper>
+				<LoadingIcon src={loading} alt="loading.." />
+			</HorizontalWrapper>
+		);
 
 	const handleDelete = async (id) => {
 		const updateArr = data.filter((item) => item._id !== id);
@@ -67,14 +74,6 @@ const HomePage = ({ userId }) => {
 		updatePost(userId, formatData);
 	};
 	console.log(data);
-
-	if (!data)
-		return (
-			<HorizontalWrapper>
-				<LoadingIcon src={loading} alt="loading.." />
-			</HorizontalWrapper>
-		);
-
 	return (
 		<Section>
 			<Header>
